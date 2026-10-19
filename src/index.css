@@ -1,0 +1,245 @@
+@import "tailwindcss";
+
+:root {
+  /* =========================================================================
+     「同日 · 把日子过在一起」暖感亚麻纸本风 Token 体系
+     低饱和、暖米灰纸底、鼠尾草绿、砖红陶土、暖麦色卡片
+     ========================================================================= */
+
+  /* 画布与卡片表面 (60-30-10 暖纸层次) */
+  --bg: #f5f2eb;             /* 主画布：暖亚麻米灰纸底 */
+  --bg-subtle: #ebe6dc;      /* 次级槽底：日历格/分段控件/斑马纹底 */
+  --surface-warm: #efe6d5;   /* 暖沙色：顶部横幅/近期要留意卡片底 */
+  --surface-warm-2: #eadfca; /* 暖沙渐变尾色 */
+  --card: #fcfbf7;           /* 一级卡片：柔和暖象牙白 */
+  --card-line: #e5dfd3;      /* 卡片描边：1px 暖石色细线 */
+  --hairline: rgba(140, 131, 119, 0.18);
+
+  /* 主视觉与四大模块色 (全部压低饱和度，融于暖纸底) */
+  --brand: #6f7d5c;          /* 鼠尾草橄榄绿 (日历选中态 / 主操作色) */
+  --brand-deep: #526040;     /* 深橄榄绿文字强调 */
+  --brand-soft: #dce3d3;     /* 浅鼠尾草胶囊底 (如「全家/全团」胶囊) */
+  --brand-ghost: #f7f4ed;    /* 输入框默认暖底 */
+
+  --terracotta: #9e473c;     /* 砖红陶土色 (Logo底色 / 关键链接 / 请假模块) */
+  --terracotta-soft: #f3e3df;
+
+  --peach: #c87d65;          /* 暖陶粉橘 (消费模块) */
+  --peach-deep: #9e543d;
+  --peach-soft: #f5e8e2;
+
+  --mint: #6f7d5c;           /* 鼠尾草青绿 (打工模块 / 正向净赚) */
+  --mint-deep: #4e5e3c;
+  --mint-soft: #e3e9dc;
+
+  --lilac: #6b7d8c;          /* 雾霾蓝灰 (娱乐模块 / 成员头像底) */
+  --lilac-deep: #495a68;
+  --lilac-soft: #e3e8ec;
+
+  --gold: #c89648;           /* 暖麦鎏金 (小金库 / 太阳插画 / 玄晶) */
+  --gold-deep: #966922;
+  --gold-soft: #f5ebd6;
+
+  /* 三级文字阶梯 (温润墨褐，绝不用纯黑) */
+  --text: #3d3831;           /* 一级正文与大数字：深焙咖啡褐 */
+  --text-sub: #6e665b;       /* 二级辅助正文：暖灰褐 */
+  --text-weak: #999083;      /* 三级元信息/时间戳/农历：浅亚麻灰 */
+
+  /* 状态语义色 */
+  --st-pass: #5b7a59;
+  --st-pass-bg: #e4ede3;
+  --st-reject: #a85248;
+  --st-reject-bg: #f4e3e1;
+  --st-wait: #b87638;
+  --st-wait-bg: #f6eadb;
+
+  /* 5 大门派色 (融入暖纸色温的低饱和古风色系，仅用于认位置/分组) */
+  --sect-xiu: #a85869;
+  --sect-xiu-soft: #f4e6e9;
+  --sect-xiu-rail: #DFC2C8;
+
+  --sect-ge: #527a73;
+  --sect-ge-soft: #e4efed;
+  --sect-ge-rail: #BDD6D2;
+
+  --sect-du: #635f94;
+  --sect-du-soft: #e8e7f3;
+  --sect-du-rail: #C5C3DE;
+
+  --sect-hua: #73537d;
+  --sect-hua-soft: #ece6ef;
+  --sect-hua-rail: #CEBFD4;
+
+  --sect-yao: #657847;
+  --sect-yao-soft: #e8ede0;
+  --sect-yao-rail: #C4D0B2;
+
+  /* 阴影分级 (极其克制的暖褐微投影，主要靠 1px 描边与底色温差区分层次) */
+  --shadow-sm: 0 2px 8px rgba(82, 71, 56, 0.04);
+  --shadow-card: 0 6px 20px rgba(82, 71, 56, 0.05);
+  --shadow-vault: 0 6px 18px rgba(184, 134, 56, 0.20);
+  --shadow-float: 0 8px 22px rgba(111, 125, 92, 0.28);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background-color: #ebe6dc;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 宋体会刊感标题字体 (复刻参考图「平凡的一天，也有小小的晴天。」) */
+.font-editorial-serif {
+  font-family: "Songti SC", "Noto Serif SC", "STSong", "Source Han Serif SC", "SimSun", Georgia, serif;
+}
+
+.num-tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* 顶部暖沙色插画横幅卡 (复刻参考图第一张卡片) */
+.warm-hero-banner {
+  background: linear-gradient(135deg, #efe7d6 0%, #e7dac3 100%);
+  border: 1px solid #dfd2ba;
+  border-radius: 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 「近期要留意」暖麦色通知卡 (复刻参考图底部卡片) */
+.warm-notice-card {
+  background: #ede6d6;
+  border: 1px solid #dfd6c3;
+  border-radius: 20px;
+}
+
+/* 首页四宫格与中心金库圆 (物理定律 #2: 圆58px + 间距10px + 挖洞半径35px 严密联动) */
+.bento-grid-2x2 {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.bento-card {
+  position: relative;
+  background: var(--card);
+  border-radius: 20px;
+  padding: 14px;
+  border: 1px solid var(--card-line);
+  box-shadow: var(--shadow-card);
+  transition: transform 150ms var(--ease-out), background-color 150ms ease;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+}
+
+.bento-card:active {
+  transform: scale(0.985);
+  background-color: #f6f3eb;
+}
+
+/* 四张卡内角 1/4 圆弧挖洞遮罩 (半径 35px = 58/2 + 6px 呼吸环，圆心距卡片内角偏移 5px 即 gap/2) */
+.bento-tl {
+  -webkit-mask-image: radial-gradient(circle 35px at calc(100% + 5px) calc(100% + 5px), transparent 34.5px, #000 35px);
+  mask-image: radial-gradient(circle 35px at calc(100% + 5px) calc(100% + 5px), transparent 34.5px, #000 35px);
+}
+.bento-tr {
+  -webkit-mask-image: radial-gradient(circle 35px at -5px calc(100% + 5px), transparent 34.5px, #000 35px);
+  mask-image: radial-gradient(circle 35px at -5px calc(100% + 5px), transparent 34.5px, #000 35px);
+}
+.bento-bl {
+  -webkit-mask-image: radial-gradient(circle 35px at calc(100% + 5px) -5px, transparent 34.5px, #000 35px);
+  mask-image: radial-gradient(circle 35px at calc(100% + 5px) -5px, transparent 34.5px, #000 35px);
+}
+.bento-br {
+  -webkit-mask-image: radial-gradient(circle 35px at -5px -5px, transparent 34.5px, #000 35px);
+  mask-image: radial-gradient(circle 35px at -5px -5px, transparent 34.5px, #000 35px);
+}
+
+/* 中心金库圆 (58px) */
+.vault-orb-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 58px;
+  height: 58px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #faf5e8;
+  border: 2px solid #d8c296;
+  box-shadow: var(--shadow-vault), inset 0 2px 6px rgba(255, 255, 255, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 150ms var(--ease-out);
+}
+
+.vault-orb-center:active {
+  transform: translate(-50%, -50%) scale(0.93);
+}
+
+@keyframes waveDrift {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-12%); }
+  100% { transform: translateX(0); }
+}
+
+.vault-wave-fill {
+  position: absolute;
+  left: -15%;
+  right: -15%;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(214, 174, 102, 0.65) 0%, rgba(194, 144, 62, 0.88) 100%);
+  border-radius: 38% 42% 0 0 / 8px 8px 0 0;
+  transition: height 280ms var(--ease-out);
+  animation: waveDrift 5s ease-in-out infinite;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: pageFadeIn 170ms var(--ease-out) forwards;
+}
+
+.record-card-press {
+  transition: transform 140ms var(--ease-out), background-color 140ms ease;
+}
+.record-card-press:active {
+  transform: scale(0.99);
+  background-color: #f5f1e6;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(140, 131, 119, 0.28);
+  border-radius: 999px;
+}

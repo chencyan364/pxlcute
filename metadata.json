@@ -1,0 +1,6 @@
+{
+  "name": "小工作台 UI 视觉重构与高保真设计系统",
+  "description": "面向固定小团体的私人工作台 App 全套视觉重构设计系统：含 9 屏 + 3 叠层高保真交互原型（支持 412px/360px 实时切换与 6 种状态矩阵）、设计 Token、组件规格书、拍板决策与可直接落地的单文件 CSS 代码。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
